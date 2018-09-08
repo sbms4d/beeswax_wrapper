@@ -7,10 +7,7 @@ from __future__ import unicode_literals
 
 import keyring
 import getpass
-import os
 import argparse
-
-beeswax_file_name = '/data/beeswax_user.txt'
 
 
 def store_beeswax_credentials(usrnm, psswrd):
@@ -20,9 +17,9 @@ def store_beeswax_credentials(usrnm, psswrd):
     :param str|unicode usrnm: Beeswax username/email
     :param str|unicode psswrd: Beeswax password
     """
-    keyring.set_password("beeswax", usrnm, psswrd)
-    with open(beeswax_file_name, 'w') as fw:
-        fw.write(usrnm)
+    user = getpass.getuser()
+    keyring.set_password("beeswax_username", user, usrnm)
+    keyring.set_password("beeswax_password", user, psswrd)
 
 
 def get_beeswax_credentials():
@@ -31,14 +28,11 @@ def get_beeswax_credentials():
     :rtype: dict[str|unicode, str|unicode]
     :return: beeswax credentials, e.g. {"username":"foo", "password":"bar"}
     """
-
-    if not os.path.exists(beeswax_file_name):
-        return {}
-
-    with open(beeswax_file_name) as fr:
-        user_name = fr.read().strip()
-
-    return {'username': user_name, 'password': keyring.get_password("beeswax", user_name)}
+    user = getpass.getuser()
+    return {
+        'username': keyring.get_password("beeswax_username", user),
+        'password': keyring.get_password("beeswax_password", user)
+    }
 
 
 if __name__ == '__main__':
