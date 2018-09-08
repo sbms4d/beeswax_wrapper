@@ -2,12 +2,12 @@ from setuptools import setup, find_packages
 
 setup(
     name='beeswax_wrapper',
-    version='1.0.0',
+    version='1.0.1',
     description='Python2 Wrapper for the Beeswax API',
     author='iotec',
     author_email='dev@dsp.io',
     url='https://github.com/iotgdev/beeswax_wrapper/',
-    download_url='https://github.com/iotgdev/beeswax_wrapper/archive/1.0.0.tar.gz',
+    download_url='https://github.com/iotgdev/beeswax_wrapper/archive/1.0.1.tar.gz',
     packages=find_packages(include=['beeswax_wrapper', 'beeswax_wrapper.*']),
     data_files=[],
     include_package_data=True,
