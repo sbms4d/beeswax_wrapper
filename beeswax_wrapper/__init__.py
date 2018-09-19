@@ -17,6 +17,6 @@ Usage:
 >>> # cookies are preserved per class
 """
 
-from beeswax_wrapper.core.beeswax import BeeswaxAPI, configure_endpoint
+from beeswax_wrapper.core.access import BeeswaxAPI, configure_endpoint
 
 __all__ = ['BeeswaxAPI', 'configure_endpoint']

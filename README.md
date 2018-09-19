@@ -2,6 +2,8 @@
 
 The beeswax wrapper is a python API for the beeswax DSP
 
+beeswax_wrapper is currently supported for python2 and python3.
+
 ## Imports
 ```python
 >>> from beeswax_wrapper import BeeswaxAPI, configure_endpoint

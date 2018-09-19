@@ -475,19 +475,19 @@ class Misc(BaseAPI):
         """
         return self._dal.call('GET', ['search'], params=kwargs)
 
-    def user_lookup(self):
+    def user_lookup(self, **kwargs):
         return self._dal.call('GET', ['user_lookup'])
 
-    def view(self, view_name):
+    def view(self, view_name, **kwargs):
         """
         :type view_name: str
         """
-        parameters = dict(view_name=view_name)
+        parameters = dict(view_name=view_name, **kwargs)
         return self._dal.call('GET', ['view'], params=parameters)
 
-    def view_list(self, view_name):
+    def view_list(self, view_name, **kwargs):
         """
         :type view_name: str
         """
-        parameters = dict(view_name=view_name)
+        parameters = dict(view_name=view_name, **kwargs)
         return self._dal.call('GET', ['view'], params=parameters)

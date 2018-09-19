@@ -6,11 +6,16 @@ Components in this module should not be used but built upon
 """
 from __future__ import unicode_literals
 
-from boltons.funcutils import wraps
-
 from abc import ABCMeta, abstractproperty
 
 from beeswax_wrapper.core.exceptions import BeeswaxRESTException
+
+try:
+    from boltons.funcutils import wraps
+except ImportError:
+    from functools import wraps
+
+from six import with_metaclass
 
 
 class BeeswaxABCMeta(ABCMeta):
@@ -35,9 +40,8 @@ class BeeswaxABCMeta(ABCMeta):
         return new_func
 
 
-class BaseAPI(object):
+class BaseAPI(with_metaclass(BeeswaxABCMeta, object)):
     """Base API class for attribute API structures"""
-    __metaclass__ = BeeswaxABCMeta
 
     def __init__(self, dal):
         self._dal = dal

@@ -14,6 +14,12 @@ from beeswax_wrapper.credentials.credential_manager import get_beeswax_credentia
 from beeswax_wrapper.modules import account, admin, creatives, extensions, monitoring, operations, segments
 
 
+try:
+    unicode = unicode
+except NameError:  # 2to3
+    unicode = str
+
+
 BEESWAX_DAL = None
 
 
@@ -51,7 +57,7 @@ class BeeswaxDAL(object):
         response = call_func(url, **kwargs).json()
 
         if not response['success']:
-            raise BeeswaxRESTException('\n'.join(response.get('errors', response['message'])))
+            raise BeeswaxRESTException('\n'.join(response.get('errors', [response['message']])))
 
         return response.get('payload')
 
