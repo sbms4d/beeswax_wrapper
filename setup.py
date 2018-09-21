@@ -1,16 +1,16 @@
 from setuptools import setup, find_packages
-from test import PyTest
 
-VERSION = '1.1.0'
+from test import PyTest
+from version import __version__
 
 setup(
     name='beeswax_wrapper',
-    version=VERSION,
+    version=__version__,
     description='Python2 Wrapper for the Beeswax API',
     author='iotec',
     author_email='dev@dsp.io',
     url='https://github.com/iotgdev/beeswax_wrapper/',
-    download_url='https://github.com/iotgdev/beeswax_wrapper/archive/{}.tar.gz'.format(VERSION),
+    download_url='https://github.com/iotgdev/beeswax_wrapper/archive/{}.tar.gz'.format(__version__),
     packages=find_packages(include=['beeswax_wrapper', 'beeswax_wrapper.*']),
     data_files=[],
     test_suite='test',
