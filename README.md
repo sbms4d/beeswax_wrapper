@@ -4,6 +4,12 @@ The beeswax wrapper is a python API for the beeswax DSP
 
 beeswax_wrapper is currently supported for python2 and python3.
 
+
+# Installation
+```console
+$ pip install beeswax_wrapper
+```
+
 ## Imports
 ```python
 >>> from beeswax_wrapper import BeeswaxAPI, configure_endpoint
@@ -64,7 +70,7 @@ In the event that a connection times out or is unavailable, the `BeeswaxDAL` wil
 Credentials from the DAL are queried from the os keyring. 
 
 ### Adding credentials
-```python
+```console
 $ python beeswax_wrapper/credentials/credential_manager.py
 Beeswax Username:
 Beeswax Password:
