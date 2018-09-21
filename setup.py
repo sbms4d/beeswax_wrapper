@@ -1,4 +1,5 @@
 from setuptools import setup, find_packages
+from test import PyTest
 
 VERSION = '1.1.0'
 
@@ -13,9 +14,9 @@ setup(
     packages=find_packages(include=['beeswax_wrapper', 'beeswax_wrapper.*']),
     data_files=[],
     test_suite='test',
-    tests_require=[
-        'mock>=2.0.0'
-    ],
+    setup_requires=['pytest-runner'],
+    tests_require=['mock>=2.0.0', 'pytest'],
+    cmdclass={'pytest': PyTest},
     scripts=['beeswax_wrapper/credentials/beeswax_credentials'],
     include_package_data=True,
     install_requires=[
