@@ -9,8 +9,11 @@ about = {
 with open(os.path.join(about['here'], 'version.py')) as f:
     exec (f.read(), about)
 
-with open(os.path.join(about['here'], 'test', '__init__.py')) as f:
-    exec (f.read(), about)
+try:
+    with open(os.path.join(about['here'], 'test', '__init__.py')) as f:
+        exec (f.read(), about)
+except IOError:
+    pass
 
 with open(os.path.join(about['here'], 'README.md')) as f:
     about['readme'] = f.read()
@@ -43,7 +46,7 @@ setup(
     test_suite='test',
     setup_requires=['pytest-runner'],
     tests_require=['mock>=2.0.0', 'pytest'],
-    cmdclass={'pytest': about['PyTest']},
+    cmdclass={'pytest': about.get('PyTest')},
     scripts=['bin/beeswax_credentials'],
     install_requires=[
         'keyrings.alt>=3.1',
