@@ -1,0 +1,4 @@
+recursive-include test *.py
+recursive-include bin *
+include version.py
+include LICENSE
