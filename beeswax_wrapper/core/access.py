@@ -56,10 +56,10 @@ class BeeswaxDAL(object):
         call_func = getattr(self.session, method.lower())
         response = call_func(url, **kwargs).json()
 
-        if not response['success']:
+        if not response.get('success', True):
             raise BeeswaxRESTException('\n'.join(response.get('errors', [response.get('message', '')])))
 
-        return response.get('payload')
+        return response.get('payload', response)
 
     def authenticate(self, username=None, password=None):
         """
