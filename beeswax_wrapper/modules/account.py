@@ -26,23 +26,22 @@ class Account(BaseAPI):
         :param dict kwargs: customer_id, alternative_id, account_name, primary_account, active, create_date, update_date
         """
         parameters = dict(account_id=account_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: account_id, customer_id, alternative_id, account_name, primary_account, active, create_date,
             update_date
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
-    def create(self, account_name, active, **kwargs):
+    def create(self, account_name, **kwargs):
         """
         :type account_name: str
-        :type active: bool
         :param dict kwargs: customer_id, alternative_id, primary_account, locale, timezone, currency_id,
             date_format_string, notes
         """
-        parameters = dict(account_name=account_name, active=active, **kwargs)
+        parameters = dict(account_name=account_name, **kwargs)
         return self._call('POST', data=ujson.dumps(parameters))
 
     def update(self, account_id, **kwargs):
@@ -52,7 +51,7 @@ class Account(BaseAPI):
             date_format_string, notes, active
         """
         parameters = dict(account_id=account_id, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
 
 class AccountAlert(BaseAPI):
@@ -74,14 +73,14 @@ class AccountAlert(BaseAPI):
         :param dict kwargs: system_alert_key, email, slack_api, slack_channel, slack_emoji, active
         """
         parameters = dict(account_alert_id=account_alert_id, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
     def delete(self, account_alert_id):
         """
         :type account_alert_id: int
         """
         parameters = dict(account_alert_id=account_alert_id)
-        return self._call('DELETE', params=parameters)
+        return self._call('DELETE', data=ujson.dumps(parameters))
 
 
 class AccountSetting(BaseAPI):
@@ -95,13 +94,13 @@ class AccountSetting(BaseAPI):
         :param dict kwargs: account_setting
         """
         parameters = dict(as_id=as_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: as_id, account_setting
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, account_setting, value):
         """
@@ -118,11 +117,11 @@ class AccountSetting(BaseAPI):
         :type value: str|int|float
         """
         parameters = dict(as_id=as_id, account_setting=account_setting, value=value)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
     def delete(self, as_id):
         """
         :type as_id: int
         """
         parameters = dict(as_id=as_id)
-        return self._call('DELETE', params=parameters)
+        return self._call('DELETE', data=ujson.dumps(parameters))

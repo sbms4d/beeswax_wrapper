@@ -30,7 +30,7 @@ class Authentication(BaseAPI):
         :type new_password: str
         """
         parameters = dict(user_id=user_id, password=password, new_password=new_password)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
     def delete(self):
         # TODO: check this is correct
@@ -57,7 +57,7 @@ class Password(BaseAPI):
         :param dict kwargs: user_id, email
         """
         parameters = dict(login_token=login_token, new_password=new_password, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
 
 class Role(BaseAPI):
@@ -71,13 +71,13 @@ class Role(BaseAPI):
         :param dict kwargs: role_name, is_global, parent_role_id, active
         """
         parameters = dict(role_id=role_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: role_id, role_name, is_global, parent_role_id, active
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, role_name, parent_role_id, permissions, **kwargs):
         """
@@ -95,14 +95,14 @@ class Role(BaseAPI):
         :param dict kwargs: role_name, global, parent_role_id, permissions, notes, active
         """
         parameters = dict(role_id=role_id, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
     def delete(self, role_id):
         """
         :type role_id: int
         """
         parameters = dict(role_id=role_id)
-        return self._call('DELETE', params=parameters)
+        return self._call('DELETE', data=ujson.dumps(parameters))
 
 
 class User(BaseAPI):
@@ -116,13 +116,13 @@ class User(BaseAPI):
         :param dict kwargs: email, first_name, last_name, role_id, active
         """
         parameters = dict(user_id=user_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: user_id, email, first_name, last_name, role_id, active
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, email, role_id, **kwargs):
         """
@@ -140,11 +140,11 @@ class User(BaseAPI):
             send_product_comms
         """
         parameters = dict(user_id=user_id, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
     def delete(self, user_id):
         """
         :type user_id: int
         """
         parameters = dict(user_id=user_id)
-        return self._call('DELETE', params=parameters)
+        return self._call('DELETE', data=ujson.dumps(parameters))

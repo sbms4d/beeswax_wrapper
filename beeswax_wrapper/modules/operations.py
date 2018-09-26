@@ -20,13 +20,13 @@ class Advertiser(BaseAPI):
         :param dict kwargs: alternative_id, advertiser_name, create_date, update_date, pretty, time
         """
         parameters = dict(advertiser_id=advertiser_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: advertiser_id, alternative_id, advertiser_name, create_date, update_date, pretty, time
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, advertiser_name, conversion_method_id, **kwargs):
         """
@@ -45,14 +45,14 @@ class Advertiser(BaseAPI):
             default_currency, default_creative_thumbnail_url
         """
         parameters = dict(advertiser_id=advertiser_id, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
     def delete(self, advertiser_id):
         """
         :type advertiser_id: int
         """
         parameters = dict(advertiser_id=advertiser_id)
-        return self._call('DELETE', params=parameters)
+        return self._call('DELETE', data=ujson.dumps(parameters))
 
 
 class Campaign(BaseAPI):
@@ -67,14 +67,14 @@ class Campaign(BaseAPI):
             update_date
         """
         parameters = dict(campaign_id=campaign_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: campaign_id, advertiser_id, alternative_id, campaign_name, bid_modifier_id, active,
             create_date, update_date
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, advertiser_id, campaign_name, campaign_budget, budget_type,
                start_date, active, **kwargs):
@@ -100,14 +100,14 @@ class Campaign(BaseAPI):
             active
         """
         parameters = dict(campaign_id=campaign_id, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
     def delete(self, campaign_id):
         """
         :type campaign_id: int
         """
         parameters = dict(campaign_id=campaign_id)
-        return self._call('DELETE', params=parameters)
+        return self._call('DELETE', data=ujson.dumps(parameters))
 
 
 class Event(BaseAPI):
@@ -125,13 +125,13 @@ class Event(BaseAPI):
         :param dict kwargs: event_name, advertiser_id, event_type_id, segment_id, create_date, update_date
         """
         parameters = dict(event_id=event_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: event_id, event_name, advertiser_id, event_type_id, segment_id, create_date, update_date
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, event_name, advertiser_id, value, **kwargs):
         """
@@ -150,14 +150,14 @@ class Event(BaseAPI):
             view_window
         """
         parameters = dict(event_id=event_id, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
     def delete(self, event_id):
         """
         :type event_id: int
         """
         parameters = dict(event_id=event_id)
-        return self._call('DELETE', params=parameters)
+        return self._call('DELETE', data=ujson.dumps(parameters))
 
 
 class EventTag(BaseAPI):
@@ -171,13 +171,13 @@ class EventTag(BaseAPI):
         :param dict kwargs: event_name, advertiser_id, event_type_id, tag_type, format
         """
         parameters = dict(event_id=event_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: event_id, event_name, advertiser_id, event_type_id, tag_type, format
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
 
 class LineItem(BaseAPI):
@@ -196,14 +196,14 @@ class LineItem(BaseAPI):
             bid_modifier_id, start_date, end_date, create_date, update_date
         """
         parameters = dict(line_item_id=line_item_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: line_item_id, campaign_id, advertiser_id, alternative_id, line_item_type_id, line_item_name,
             bid_modifier_id, start_date, end_date, create_date, update_date
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, advertiser_id, line_item_type_id, line_item_name, line_item_budget, budget_type, bidding,
                start_date, active, **kwargs):
@@ -232,14 +232,14 @@ class LineItem(BaseAPI):
             bid_modifier_id, max_bid, bidding, start_date, end_date, frequency_cap, notes, active
         """
         parameters = dict(line_item_id=line_item_id, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
     def delete(self, line_item_id):
         """
         :type line_item_id: int
         """
         parameters = dict(line_item_id=line_item_id)
-        return self._call('DELETE', params=parameters)
+        return self._call('DELETE', data=ujson.dumps(parameters))
 
 
 class LineItemFlight(BaseAPI):
@@ -253,13 +253,13 @@ class LineItemFlight(BaseAPI):
         :param dict kwargs: flight_name, start_date, end_date, alternative_id, active
         """
         parameters = dict(flight_id=flight_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: flight_id, flight_name, start_date, end_date, alternative_id, active
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, start_date, line_item_id, **kwargs):
         """
@@ -276,8 +276,8 @@ class LineItemFlight(BaseAPI):
         :param dict kwargs: flight_id, flight_name, budget, end_date, alternative_id, notes, active
         """
         parameters = dict(start_date=start_date, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
     def delete(self, flight_id):
         parameters = dict(flight_id=flight_id)
-        return self._call('DELETE', params=parameters)
+        return self._call('DELETE', data=ujson.dumps(parameters))

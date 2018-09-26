@@ -21,13 +21,13 @@ class ActivityLog(BaseAPI):
         :param dict kwargs: user_id, object_id, object_type, activity_date, action, details
         """
         parameters = dict(log_id=log_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: log_id, user_id, object_id, object_type, activity_date, action, details
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
 
 class Alert(BaseAPI):
@@ -41,13 +41,13 @@ class Alert(BaseAPI):
         :param dict kwargs: user_id, subject, active, create_date, update_date
         """
         parameters = dict(alert_id=alert_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: alert_id, user_id, subject, active, create_date, update_date
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, subject, content, from_address, **kwargs):
         """
@@ -65,14 +65,14 @@ class Alert(BaseAPI):
         :param dict kwargs: user_id, is_global, active
         """
         parameters = dict(alert_id=alert_id, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
     def delete(self, alert_id):
         """
         :type alert_id: int
         """
         parameters = dict(alert_id=alert_id)
-        return self._call('DELETE', params=parameters)
+        return self._call('DELETE', data=ujson.dumps(parameters))
 
 
 class Dashboard(BaseAPI):
@@ -85,7 +85,7 @@ class Dashboard(BaseAPI):
         :type dashboard: str
         """
         parameters = dict(dashboard=dashboard)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self):
         return self._call('GET')

@@ -22,13 +22,13 @@ class BidModifier(BaseAPI):
         :param dict kwargs: advertiser_id, alternative_id, bid_modifier_name, active
         """
         parameters = dict(bid_modifier_id=bid_modifier_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: bid_modifier_id, advertiser_id, alternative_id, bid_modifier_name, active
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, bid_modifier_name, bid_modifier_terms, active, **kwargs):
         """
@@ -49,14 +49,14 @@ class BidModifier(BaseAPI):
         :param dict kwargs: alternative_id, bid_modifier_name, bid_modifier_terms, notes
         """
         parameters = dict(bid_modifier_id=bid_modifier_id, active=active, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
     def delete(self, bid_modifier_id):
         """
         :type bid_modifier_id: int
         """
         parameters = dict(bid_modifier_id=bid_modifier_id)
-        return self._call('DELETE', params=parameters)
+        return self._call('DELETE', data=ujson.dumps(parameters))
 
 
 class CustomList(BaseAPI):
@@ -70,13 +70,13 @@ class CustomList(BaseAPI):
         :param dict kwargs: list_name, list_type, active, create_date, update_date
         """
         parameters = dict(list_id=list_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: list_id, list_name, list_type, active, create_date, update_date
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, list_name, list_type, **kwargs):
         """
@@ -93,14 +93,14 @@ class CustomList(BaseAPI):
         :param dict kwargs: list_name, list_type, delimiter, alternative_id, notes, active
         """
         parameters = dict(list_id=list_id, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
     def delete(self, custom_list_id):
         """
         :type custom_list_id: int
         """
         parameters = dict(custom_list_id=custom_list_id)
-        return self._call('DELETE', params=parameters)
+        return self._call('DELETE', data=ujson.dumps(parameters))
 
 
 class ListItem(BaseAPI):
@@ -118,13 +118,13 @@ class ListItem(BaseAPI):
         :param dict kwargs: list_id, list_item, active
         """
         parameters = dict(list_item_id=list_item_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: list_item_id, list_id, list_item, active
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, list_id, list_item, **kwargs):
         """
@@ -141,7 +141,7 @@ class ListItem(BaseAPI):
         :param dict kwargs: value, active
         """
         parameters = dict(list_item_id=list_item_id, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
     def delete(self, list_item_id, list_id):
         """
@@ -149,7 +149,7 @@ class ListItem(BaseAPI):
         :type list_id: int
         """
         parameters = dict(list_item_id=list_item_id, list_id=list_id)
-        return self._call('DELETE', params=parameters)
+        return self._call('DELETE', data=ujson.dumps(parameters))
 
 
 class ListItemsBulkUpload(BaseAPI):
@@ -177,7 +177,7 @@ class NativeOffer(BaseAPI):
         """
         parameters = dict(native_offer_id=native_offer_id, advertiser_id=advertiser_id,
                           native_offer_name=native_offer_name, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def create(self, advertiser_id, native_offer_name, *kwargs):
         """
@@ -201,7 +201,7 @@ class NativeOffer(BaseAPI):
         """
         parameters = dict(native_offer_id=native_offer_id, advertiser_id=advertiser_id,
                           native_offer_name=native_offer_name, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
 
 class PushQueue(BaseAPI):
@@ -216,14 +216,14 @@ class PushQueue(BaseAPI):
             update_date
         """
         parameters = dict(push_id=push_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: push_id, object_id, object_type, action, push_request_date, push_status,
             push_complete_date, update_date
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
 
 class Report(BaseAPI):
@@ -241,14 +241,14 @@ class Report(BaseAPI):
         :param dict kwargs: report_name, report_id, advertiser_id, user_id, frequency, active, create_date, update_date
         """
         parameters = dict(report_save_id=report_save_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: report_save_id, report_name, report_id, advertiser_id, user_id, frequency, active,
             create_date, update_date
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, report_name, report_id, **kwargs):
         """
@@ -268,14 +268,14 @@ class Report(BaseAPI):
             email_to, email_cc, active
         """
         parameters = dict(report_save_id=report_save_id, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
     def delete(self, report_save_id):
         """
         :type report_save_id: int
         """
         parameters = dict(report_save_id=report_save_id)
-        return self._call('DELETE', params=parameters)
+        return self._call('DELETE', data=ujson.dumps(parameters))
 
 
 class ReportQueue(BaseAPI):
@@ -288,7 +288,7 @@ class ReportQueue(BaseAPI):
         :type report_queue_id: int
         """
         parameters = dict(report_queue_id=report_queue_id)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def create(self, report_id, **kwargs):
         """
@@ -311,14 +311,14 @@ class Strategy(BaseAPI):
         :param dict kwargs: line_item_type_id, strategy_name, active, default_strategy, create_date, update_date
         """
         parameters = dict(strategy_id=strategy_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: strategy_id, line_item_type_id, strategy_name, active, default_strategy, create_date,
             update_date
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
 
 class TargetingTemplate(BaseAPI):
@@ -332,14 +332,14 @@ class TargetingTemplate(BaseAPI):
         :param dict kwargs: template_name, alternative_id, strategy_id, active, create_date, update_date
         """
         parameters = dict(targeting_template_id=targeting_template_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: targeting_template_id, template_name, alternative_id, strategy_id, active, create_date,
             update_date
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, template_name, **kwargs):
         """
@@ -355,14 +355,14 @@ class TargetingTemplate(BaseAPI):
         :param dict kwargs: template_name, alternative_id, strategy_id, targeting, active
         """
         parameters = dict(targeting_template_id=targeting_template_id, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
     def delete(self, targeting_template_id):
         """
         :type targeting_template_id: int
         """
         parameters = dict(targeting_template_id=targeting_template_id)
-        return self._call('DELETE', params=parameters)
+        return self._call('DELETE', data=ujson.dumps(parameters))
 
 
 class Vendor(BaseAPI):
@@ -380,13 +380,13 @@ class Vendor(BaseAPI):
         :param dict kwargs: vendor_name, global, create_date, update_date
         """
         parameters = dict(vendor_id=vendor_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: vendor_id, vendor_name, global, create_date, update_date
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, vendor_name, **kwargs):
         """
@@ -403,14 +403,14 @@ class Vendor(BaseAPI):
         :param dict kwargs: vendor_name, fee_type, fee_amount, global
         """
         parameters = dict(vendor_id=vendor_id, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
     def delete(self, vendor_id):
         """
         :type vendor_id: int
         """
         parameters = dict(vendor_id=vendor_id)
-        return self._call('DELETE', params=parameters)
+        return self._call('DELETE', data=ujson.dumps(parameters))
 
 
 class VendorFee(BaseAPI):
@@ -424,13 +424,13 @@ class VendorFee(BaseAPI):
         :param dict kwargs: vendor_id, vendor_fee_name, object_id, object_type, create_date, update_date
         """
         parameters = dict(vendor_fee_id=vendor_fee_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: vendor_fee_id, vendor_id, vendor_fee_name, object_id, object_type, create_date, update_date
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, vendor_id, object_id, object_type, **kwargs):
         """
@@ -448,14 +448,14 @@ class VendorFee(BaseAPI):
         :param dict kwargs: vendor_fee_name, fee_type, fee_amount
         """
         parameters = dict(vendor_fee_id=vendor_fee_id, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
     def delete(self, vendor_fee_id):
         """
         :type vendor_fee_id: int
         """
         parameters = dict(vendor_fee_id=vendor_fee_id)
-        return self._call('DELETE', params=parameters)
+        return self._call('DELETE', data=ujson.dumps(parameters))
 
 
 class Misc(BaseAPI):
@@ -473,21 +473,21 @@ class Misc(BaseAPI):
         """
         :param dict kwargs: object_id, object_type, object_name
         """
-        return self._dal.call('GET', ['search'], params=kwargs)
+        return self._dal.call('GET', ['search'], data=ujson.dumps(kwargs))
 
     def user_lookup(self, **kwargs):
-        return self._dal.call('GET', ['user_lookup'])
+        return self._dal.call('GET', ['user_lookup'], data=ujson.dumps(kwargs))
 
     def view(self, view_name, **kwargs):
         """
         :type view_name: str
         """
         parameters = dict(view_name=view_name, **kwargs)
-        return self._dal.call('GET', ['view'], params=parameters)
+        return self._dal.call('GET', ['view'], data=ujson.dumps(parameters))
 
     def view_list(self, view_name, **kwargs):
         """
         :type view_name: str
         """
         parameters = dict(view_name=view_name, **kwargs)
-        return self._dal.call('GET', ['view'], params=parameters)
+        return self._dal.call('GET', ['view'], data=ujson.dumps(parameters))

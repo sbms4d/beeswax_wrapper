@@ -32,14 +32,14 @@ class Creative(BaseAPI):
             create_date, update_date
         """
         parameters = dict(creative_id=creative_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: creative_id, advertiser_id, alternative_id, creative_name, creative_type,
             creative_template_id, active, create_date, update_date
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, advertiser_id, creative_name, creative_type, secure, creative_template_id, active, **kwargs):
         """
@@ -66,14 +66,14 @@ class Creative(BaseAPI):
             creative_addons, creative_thumbnail_url, start_date, end_date, notes, active
         """
         parameters = dict(creative_id=creative_id, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
     def delete(self, creative_id):
         """
         :type creative_id: int
         """
         parameters = dict(creative_id=creative_id)
-        return self._call('DELETE', params=parameters)
+        return self._call('DELETE', data=ujson.dumps(parameters))
 
 
 class CreativeAddon(BaseAPI):
@@ -111,14 +111,14 @@ class CreativeApproval(BaseAPI):
         :param dict kwargs: creative_id, vendor_id, action, request_date, request_status, approved, update_date
         """
         parameters = dict(creative_approval_id=creative_approval_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: creative_approval_id, creative_id, vendor_id, action, request_date, request_status,
             approved, update_date
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
 
 class CreativeApprovalHistory(BaseAPI):
@@ -133,14 +133,14 @@ class CreativeApprovalHistory(BaseAPI):
             approved, update_date
         """
         parameters = dict(creative_approval_queue_history_id=creative_approval_queue_history_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: creative_approval_queue_history_id, creative_approval_id, creative_id, vendor_id, action,
             request_date, request_status, approved, update_date
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
 
 class CreativeAsset(BaseAPI):
@@ -158,13 +158,13 @@ class CreativeAsset(BaseAPI):
         :param dict kwargs: advertiser_id, creative_asset_name, active, asset_type, mime_type
         """
         parameters = dict(creative_asset_id=creative_asset_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: creative_asset_id, advertiser_id, creative_asset_name, active, asset_type, mime_type
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, creative_asset_name, size_in_bytes, active, **kwargs):
         """
@@ -207,13 +207,13 @@ class CreativeBulkUpload(BaseAPI):
         :param dict kwargs: advertiser_id, active, creative_template_id, create_date, update_date
         """
         parameters = dict(cbu_id=cbu_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: cbu_id, advertiser_id, active, creative_template_id, create_date, update_date
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, file_path, advertiser_id, size_in_bytes, active, bulk_type, **kwargs):
         """
@@ -243,13 +243,13 @@ class CreativeLineItemAssociation(BaseAPI):
         :param dict kwargs: creative_id, line_item_id, start_date, end_date, active
         """
         parameters = dict(cli_id=cli_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: cli_id, creative_id, line_item_id, start_date, end_date, active
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, creative_id, line_item_id, active, **kwargs):
         """
@@ -267,7 +267,7 @@ class CreativeLineItemAssociation(BaseAPI):
         :param dict kwargs: weighting, start_date, end_date, active
         """
         parameters = dict(cli_id=cli_id, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
 
 class CreativeTemplates(BaseAPI):
@@ -281,13 +281,13 @@ class CreativeTemplates(BaseAPI):
         :param dict kwargs: creative_template_name, creative_type, is_video, is_global, active
         """
         parameters = dict(creative_template_id=creative_template_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: creative_template_id, creative_template_name, creative_type, is_video, is_global, active
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, creative_template_name, is_global, rendering_key, creative_template_content, active, **kwargs):
         """
@@ -310,4 +310,4 @@ class CreativeTemplates(BaseAPI):
             creative_attributes, is_video, notes, active
         """
         parameters = dict(creative_template_id=creative_template_id, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))

@@ -31,13 +31,13 @@ class Segment(BaseAPI):
         :param dict kwargs: segment_key, segment_name, alternative_id, advertiser_id, segment_description
         """
         parameters = dict(segment_id=segment_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: segment_id, segment_key, segment_name, alternative_id, advertiser_id, segment_description
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, segment_name, **kwargs):
         """
@@ -54,7 +54,7 @@ class Segment(BaseAPI):
             aggregate_excludes
         """
         parameters = dict(segment_id=segment_id, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
 
 class SegmentTag(BaseAPI):
@@ -68,13 +68,13 @@ class SegmentTag(BaseAPI):
         :param dict kwargs: segment_name, advertiser_id, tag_type, format
         """
         parameters = dict(segment_tag=segment_tag, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: segment_tag, segment_name, advertiser_id, tag_type, format
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
 
 class SegmentCategory(BaseAPI):
@@ -95,14 +95,14 @@ class SegmentCategory(BaseAPI):
             advertiser_id
         """
         parameters = dict(segment_category_id=segment_category_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: segment_category_id, alternative_id, segment_category_key, segment_category_name,
             parent_category_key, advertiser_id
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, segment_category_name, **kwargs):
         """
@@ -118,14 +118,14 @@ class SegmentCategory(BaseAPI):
         :param dict kwargs: segment_category_name, alternativ_id, alternative_id, advertiser_id
         """
         parameters = dict(segment_category_id=segment_category_id, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
     def delete(self, segment_category_id):
         """
         :type segment_category_id: int
         """
         parameters = dict(segment_category_id=segment_category_id)
-        return self._call('DELETE', params=parameters)
+        return self._call('DELETE', data=ujson.dumps(parameters))
 
 
 class SegmentCategoryAssociation(BaseAPI):
@@ -139,13 +139,13 @@ class SegmentCategoryAssociation(BaseAPI):
         :param dict kwargs: segment_category_key, segment_key
         """
         parameters = dict(segment_category_association_id=segment_category_association_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: segment_category_association_id, segment_category_key, segment_key
         """
-        return self._call('GET', parameters=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, segment_category_key, segment_key):
         """
@@ -160,7 +160,7 @@ class SegmentCategoryAssociation(BaseAPI):
         :type segment_category_association_id: int
         """
         parameters = dict(segment_category_association_id=segment_category_association_id)
-        return self._call('DELETE', params=parameters)
+        return self._call('DELETE', data=ujson.dumps(parameters))
 
 
 class SegmentSharing(BaseAPI):
@@ -174,13 +174,13 @@ class SegmentSharing(BaseAPI):
         :param dict kwargs: segment_key, shared_account_id, active
         """
         parameters = dict(segment_sharing_id=segment_sharing_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: segment_sharing_id, segment_key, shared_account_id, active
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, segment_key, shared_account_id, **kwargs):
         """
@@ -197,7 +197,7 @@ class SegmentSharing(BaseAPI):
         :param dict kwargs: segment_key, shared_account_id, active, cpm_cost
         """
         parameters = dict(segment_sharing_id=segment_sharing_id, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
 
 class SegmentCategorySharing(BaseAPI):
@@ -211,13 +211,13 @@ class SegmentCategorySharing(BaseAPI):
         :param dict kwargs: segment_category_key, shared_account_id, active
         """
         parameters = dict(segment_category_sharing_id=segment_category_sharing_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: segment_category_sharing_id, segment_category_key, shared_account_id, active
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, segment_category_key, shared_account_id, **kwargs):
         """
@@ -234,7 +234,7 @@ class SegmentCategorySharing(BaseAPI):
         :param dict kwargs: segment_key, shared_account_id, active, cpm_cost
         """
         parameters = dict(segment_category_sharing_id=segment_category_sharing_id, **kwargs)
-        return self._call('PUT', params=parameters)
+        return self._call('PUT', data=ujson.dumps(parameters))
 
 
 class SegmentLookup(BaseAPI):
@@ -248,13 +248,13 @@ class SegmentLookup(BaseAPI):
         :param dict kwargs: segment_key, segment_name, source
         """
         parameters = dict(segment_id=segment_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: segment_id, segment_key, segment_name, source
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
 
 class SegmentCategoryLookup(BaseAPI):
@@ -268,13 +268,13 @@ class SegmentCategoryLookup(BaseAPI):
         :param dict kwargs: segment_category_key, segment_category_name, source
         """
         parameters = dict(segment_category_id=segment_category_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: segment_category_id, segment_category_key, segment_category_name, source
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
 
 class SegmentUpload(BaseAPI):
@@ -288,13 +288,13 @@ class SegmentUpload(BaseAPI):
         :param dict kwargs: file_name, upload_status, upload_complete_date, create_date, update_date
         """
         parameters = dict(segment_upload_id=segment_upload_id, **kwargs)
-        return self._call('GET', params=parameters)[0]
+        return self._call('GET', data=ujson.dumps(parameters))[0]
 
     def list(self, **kwargs):
         """
         :param dict kwargs: segment_upload_id, file_name, upload_status, upload_complete_date, create_date, update_date
         """
-        return self._call('GET', params=kwargs)
+        return self._call('GET', data=ujson.dumps(kwargs))
 
     def create(self, user_id_type, **kwargs):
         """

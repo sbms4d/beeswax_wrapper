@@ -54,10 +54,11 @@ class BeeswaxDAL(object):
         url = self.endpoint_url + '/'.join(map(unicode, paths))
 
         call_func = getattr(self.session, method.lower())
+        return call_func(url, **kwargs)
         response = call_func(url, **kwargs).json()
 
         if not response['success']:
-            raise BeeswaxRESTException('\n'.join(response.get('errors', [response['message']])))
+            raise BeeswaxRESTException('\n'.join(response.get('errors', [response.get('message', '')])))
 
         return response.get('payload')
 
