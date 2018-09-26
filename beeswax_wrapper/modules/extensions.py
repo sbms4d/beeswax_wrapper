@@ -288,7 +288,7 @@ class ReportQueue(BaseAPI):
         :type report_queue_id: int
         """
         parameters = dict(report_queue_id=report_queue_id)
-        return self._call('GET', data=ujson.dumps(parameters))[0]
+        return self._call('GET', data=ujson.dumps(parameters))
 
     def create(self, report_id, **kwargs):
         """
