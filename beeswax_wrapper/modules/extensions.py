@@ -416,7 +416,7 @@ class Vendor(BaseAPI):
 class VendorFee(BaseAPI):
     """Beeswax Vendor Fee API class"""
 
-    paths = ['vendor']
+    paths = ['vendor_fee']
 
     def retrieve(self, vendor_fee_id, **kwargs):
         """
