@@ -5,8 +5,9 @@ Beeswax specific access classes for the wrapper
 """
 from __future__ import unicode_literals
 
-import ujson
 import logging
+import traceback
+import ujson
 
 import requests
 from requests import ConnectionError
@@ -102,8 +103,8 @@ class BeeswaxDAL(object):
         """
         try:
             return self._call(method, paths, **kwargs)
-        except (ConnectionError, BeeswaxRESTException) as e:  # connection timed out or not authenticated
-            logging.warning(e.message)
+        except (ConnectionError, BeeswaxRESTException):  # connection timed out or not authenticated
+            logging.warning(traceback.format_exc())
             self.authenticate()
             return self.call(method, paths, **kwargs)
 
