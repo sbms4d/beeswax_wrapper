@@ -5,8 +5,10 @@ Beeswax specific access classes for the wrapper
 """
 from __future__ import unicode_literals
 
-import requests
+import ujson
+import logging
 
+import requests
 from requests import ConnectionError
 
 from beeswax_wrapper.core.exceptions import BeeswaxRESTException
@@ -46,7 +48,7 @@ class BeeswaxDAL(object):
     def _call(self, method, paths, **kwargs):
         """
         returns the results of an endpoint _call
-        :rtype: requests.Response
+        :rtype: list|dict
         """
         if self.endpoint_url is None:
             raise RuntimeError('Must provide a valid endpoint_url as str|unicode')
@@ -69,13 +71,28 @@ class BeeswaxDAL(object):
         Authenticates the user credentials provided
         :type username: str
         :type password: str
-        :rtype: requests.Response
+        :rtype: list|dict
+        """
+        return self.masquerade(username, password)
+
+    def masquerade(self, username=None, password=None, account_id=None):
+        """
+        Changes the user account_id
+        :type username: str
+        :type password: str
+        :type account_id: int
+        :rtype: list|dict
         """
         if not (username and password):
             credentials = get_beeswax_credentials()
             username = username or credentials['username']
             password = password or credentials['password']
-        return self._call('POST', ['authenticate'], params={'email': username, 'password': password})
+
+        parameters = {'email': username, 'password': password}
+        if account_id:
+            parameters['account_id'] = account_id
+
+        return self._call('POST', ['authenticate'], data=ujson.dumps(parameters))
 
     def call(self, method, paths, **kwargs):
         """
@@ -85,7 +102,8 @@ class BeeswaxDAL(object):
         """
         try:
             return self._call(method, paths, **kwargs)
-        except (ConnectionError, BeeswaxRESTException):  # connection timed out or not authenticated
+        except (ConnectionError, BeeswaxRESTException) as e:  # connection timed out or not authenticated
+            logging.warning(e.message)
             self.authenticate()
             return self.call(method, paths, **kwargs)
 
@@ -150,3 +168,6 @@ class BeeswaxAPI(object):
     def change_user(self, username, password):
         """Change the sessions user cookies"""
         self.dal.authenticate(username, password)
+
+    def masquerade(self, account_id=None):
+        self.dal.masquerade(account_id=account_id)
