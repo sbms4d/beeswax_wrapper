@@ -65,7 +65,7 @@ class TestBeeswaxDalCall(unittest.TestCase):
         self.assertEqual(self.dal.authenticate.called, False)
 
     def test_recurse(self):
-        self.dal._call = mock.Mock(side_effect=[BeeswaxRESTException, None])
+        self.dal._call = mock.Mock(side_effect=[BeeswaxRESTException('Test'), None])
         self.dal.call('method', [])
         # noinspection PyUnresolvedReferences
         self.assertEqual(self.dal.authenticate.called, True)
