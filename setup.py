@@ -50,7 +50,7 @@ setup(
     scripts=['bin/beeswax_credentials'],
     install_requires=[
         'keyrings.alt>=3.1',
-        'keyring==8.3',
+        'keyring==15.1.0',
         'requests>=2.19.1',
         'boltons>=18.0.0; python_version<"3.0"',
         'ujson>=1.35',
