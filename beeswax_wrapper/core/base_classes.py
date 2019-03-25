@@ -6,6 +6,7 @@ Components in this module should not be used but built upon
 """
 from __future__ import unicode_literals
 
+import sys
 from abc import ABCMeta, abstractproperty
 
 from beeswax_wrapper.core.exceptions import BeeswaxRESTException
@@ -15,7 +16,7 @@ try:
 except ImportError:
     from functools import wraps
 
-from six import with_metaclass
+from six import with_metaclass, reraise
 
 
 class BeeswaxABCMeta(ABCMeta):
@@ -36,7 +37,7 @@ class BeeswaxABCMeta(ABCMeta):
             try:
                 return func(*args, **kwargs)
             except Exception as e:
-                raise BeeswaxRESTException(e)
+                reraise(BeeswaxRESTException, BeeswaxRESTException(e), sys.exc_info()[2])
         return new_func
 
 
@@ -44,6 +45,9 @@ class BaseAPI(with_metaclass(BeeswaxABCMeta, object)):
     """Base API class for attribute API structures"""
 
     def __init__(self, dal):
+        """
+        :type dal: LabsDAL
+        """
         self._dal = dal
 
     @abstractproperty

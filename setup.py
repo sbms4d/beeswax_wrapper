@@ -21,7 +21,7 @@ with open(os.path.join(about['here'], 'README.md')) as f:
 
 setup(
     # available in PKG-INFO
-    name='beeswax_wrapper',
+    name='beeswax-wrapper',
     version=about['__version__'],
     description='Python Wrapper for the Beeswax API',
     url='https://github.com/iotgdev/beeswax_wrapper/',
@@ -50,7 +50,7 @@ setup(
     scripts=['bin/beeswax_credentials'],
     install_requires=[
         'keyrings.alt>=3.1',
-        'keyring>=8.2.1',
+        'keyring==8.3',
         'requests>=2.19.1',
         'boltons>=18.0.0; python_version<"3.0"',
         'ujson>=1.35',
