@@ -30,7 +30,7 @@ setup(
     license='MIT',
     download_url='https://github.com/iotgdev/beeswax_wrapper/archive/{}.tar.gz'.format(about['__version__']),
     long_description=about['readme'],
-    long_description_content_type='text-markdown',
+    long_description_content_type='text/markdown',
     platforms=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
