@@ -155,12 +155,15 @@ class ListItem(BaseAPI):
 class ListItemsBulkUpload(BaseAPI):
     """Beeswax List Items Bulk Upload API class"""
 
-    paths = ['list_item_bulk_upload']
+    paths = ['list_item_bulk']
 
-    def create(self, file_path, list_id, list_item):
-        parameters = dict(list_id=list_id, list_item=list_item)
-        upload_request_data = self._call('POST', data=ujson.dumps(parameters))
-        return self._dal.call('POST', self.paths + ['upload', upload_request_data['payload']['id']], files=file_path)
+    def create(self, list_id, list_items=None, file_path=None):
+        assert list_items is not None or file_path is not None, 'Must set either list_items or file_path.'
+        if list_items:
+            parameters = dict(list_id=list_id, list_items=list_items)
+            return self._call('POST', data=ujson.dumps(parameters))
+        else:
+            return self._dal.call('POST', self.paths + ['upload', list_id], files=file_path)
 
 
 class NativeOffer(BaseAPI):
